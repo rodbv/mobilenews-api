@@ -7,8 +7,6 @@ Mobile News API is a **text and image news service** for mobile devices
 (will be specified later; will probably rely on authorization tokens)
 
 ## Media Types
-Where applicable this API uses the [HAL+JSON](https://github.com/mikekelly/hal_specification/blob/master/hal_specification.md) media-type to represent resources states and affordances.
-
 Requests with a message-body are using plain JSON to set or update resource states.
 
 ## Error States
@@ -40,7 +38,7 @@ The states *id* and *created_at* are assigned at the moment of creation.
 
 + Model (application/hal+json)
 
-    HAL+JSON representation of Gist Resource. In addition to representing its state in the JSON form it offers affordances in the form of the HTTP Link header and HAL links.
+    HAL+JSON representation of Article Resource. In addition to representing its state in the JSON form it offers affordances in the form of the HTTP Link header and HAL links.
 
     + Body
 
@@ -63,6 +61,24 @@ The states *id* and *created_at* are assigned at the moment of creation.
 + Response 200
     
     [Article][]
+
+### Post a new Article [POST]
+To create a new article, simply send the whole article
+
++ Request (application/json)
+
+    [Article][]
+    
++ Response 201
+
+        {
+            "_links": {
+                    "self": { "href": "/articles/42" },
+                    "publish": { "href": "/publishing/articles/42" },
+                    "attach-image": {"href": "/articles/42/images?[image-id]}
+                },
+                "id": "42"
+        }
 
 ### Edit a Article [PUT]
 To update an Article send the whole article with some values changed.
